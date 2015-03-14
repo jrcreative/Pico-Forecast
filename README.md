@@ -1,7 +1,7 @@
 # Pico Forecast Plugin
 This plugin is for the flat file CMS [pico](https://github.com/picocms/Pico)
 
-This plugin pull weather data from the [forecast.io](https://developer.forecast.io/docs/v2) api. All you need to do is get an api key, and provide lattitude and longitude coordinates.
+This plugin pull weather data from the [forecast.io](https://developer.forecast.io/docs/v2) api. All you need to do is get an api key, and provide latitude and longitude coordinates.
 
 Animated icons by the developers of forecast.io [skycons.js](https://github.com/darkskyapp/skycons) are also supported.
 
@@ -39,10 +39,10 @@ In order to use the skycons, you'll need to:
 		<script src="{{ theme_url }}/scripts/skycons.js"></script>
 3. Add this script to the footer of the page templates where you'd like to display the skycons
 
-'''
+```
     <script>
 		var skycons = new Skycons({"color": "#404040"}); //choose any color that fits your theme.
 		{{ forecast_script }}		
 		skycons.play();
 	</script>
-'''
+```
