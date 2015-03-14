@@ -39,7 +39,7 @@ In order to use the skycons, you'll need to:
 		<script src="{{ theme_url }}/scripts/skycons.js"></script>
 3. Add this script to the footer of the page templates where you'd like to display the skycons
 
-```
+```javascript
     <script>
 		var skycons = new Skycons({"color": "#404040"}); //choose any color that fits your theme.
 		{{ forecast_script }}		
