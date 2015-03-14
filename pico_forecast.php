@@ -38,13 +38,11 @@ class Pico_Forecast {
 			$low_temp = round($data['daily']['data']['0']['temperatureMin']) . "&deg;";
 
 			//Elements: Pull these in to the template to create a customer theme
-			//$twig_vars['forecast']['debug'] = var_dump($data['currently']);
 			$twig_vars['forecast'][$k]['current_temp'] = $current_temp;
 			$twig_vars['forecast'][$k]['current_time'] = $current_time;
 			$twig_vars['forecast'][$k]['summary'] = $data['currently']['summary'];
 			$twig_vars['forecast'][$k]['high_temp'] = $high_temp;
 			$twig_vars['forecast'][$k]['low_temp'] = $low_temp;
-			$twig_vars['forecast'][$k]['icon'] = $data['currently']['icon'];
 
 			//Theme 1: a predefined layout option
 			$twig_vars['forecast_theme1'][$k] = "
