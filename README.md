@@ -10,25 +10,22 @@ Animated icons by the developers of forecast.io [skycons.js](https://github.com/
 To configure the plugin edit the pico-forecast-conf.php file and add your api key, and an array of the locations and lat/long coordinates.
 
 ###Using template tags
-There is a lot of data that can be accessed. At this time, I've only pulled out what I consider essentials, but may add more if there's interest.
+There is a lot of data that can be accessed. At this time, I've only exposed a few but will add more as needed.
 
-	twig template tags
-	
-	{{ forecast.locationName.current_temp }}
-
-	{{ forecast.locationName.current_time }}
-
-	{{ forecast.locationName.summary }}
-
-	{{ forecast.locationName.high_temp }}
-
-	{{ forecast.locationName.low_temp }}
-
-	{{ forecast.locationName.icon }}
+```twig	
+{{ forecast.locationName.current_temp }}
+{{ forecast.locationName.current_time }
+{{ forecast.locationName.summary }}
+{{ forecast.locationName.high_temp }}
+{{ forecast.locationName.low_temp }}
+{{ forecast.locationName.icon }}
+```
 
 Another way to pull the data into the template as a widget. I've currently created one widget and may add more.
 
-	{{ forecast_widget1.locationName }}
+```twig
+{{ forecast_widget1.locationName }}
+```
 
 ###Using Skycons
 In order to use the skycons, you'll need to:
@@ -36,7 +33,10 @@ In order to use the skycons, you'll need to:
 1. Download [skycons.js](https://github.com/darkskyapp/skycons) and put it in the scripts folder of the active pico theme.
 2. Add this line in the header of the page templates where you'd like to display the skycons
 
-		<script src="{{ theme_url }}/scripts/skycons.js"></script>
+```javascript
+<script src="{{ theme_url }}/scripts/skycons.js"></script>
+```
+	
 3. Add this script to the footer of the page templates where you'd like to display the skycons
 
 ```javascript
