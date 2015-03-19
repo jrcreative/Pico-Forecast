@@ -46,3 +46,18 @@ In order to use the skycons, you'll need to:
 		skycons.play();
 	</script>
 ```
+
+##Styling
+Obviously you can style the widgets however you see fit, but here's a generic starting point.
+
+```
+	<style type="text/css">
+		.weather {
+		  width: 15%;
+		  display: inline-block;
+		  text-align: center;
+		  border: 2px solid;
+		  background: #eee;
+		}
+	</style>
+```

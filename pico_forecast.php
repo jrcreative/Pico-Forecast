@@ -30,22 +30,27 @@ class Pico_Forecast {
 			$url = 'https://api.forecast.io/forecast/' . $this->config['apikey'] . '/' . $location['lat'] . ',' . $location['long'];
 			$twig_vars['forecast'][$k]['name'] = $location['name'];
 			$data = $this->get_forecast_data($url);
-			//$twig_vars['forecast_script'] = '';
+			$twig_vars['forecast_script'] = '';
 
+			$ts = $data['currently']['time'];
+			$date = new DateTime( "@$ts");
+			$date->setTimezone( new DateTimeZone($data['timezone']) );
+			$current_time = $date->format('M j, Y g:ia');
+			
 			$current_temp = round($data['currently']['temperature']) . "&deg;";
-			$current_time = date('M j, Y H:i:s', $data['currently']['time']);
 			$high_temp = round($data['daily']['data']['0']['temperatureMax']) . "&deg;";
 			$low_temp = round($data['daily']['data']['0']['temperatureMin']) . "&deg;";
 
 			//Elements: Pull these in to the template to create a customer theme
+			$twig_vars['forecast']['debug'] = var_export($data, true);
 			$twig_vars['forecast'][$k]['current_temp'] = $current_temp;
 			$twig_vars['forecast'][$k]['current_time'] = $current_time;
 			$twig_vars['forecast'][$k]['summary'] = $data['currently']['summary'];
 			$twig_vars['forecast'][$k]['high_temp'] = $high_temp;
 			$twig_vars['forecast'][$k]['low_temp'] = $low_temp;
 
-			//Theme 1: a predefined layout option
-			$twig_vars['forecast_theme1'][$k] = "
+			//Widget 1: a predefined layout option
+			$twig_vars['forecast_widget_1'][$k] = "
 				<div class=\"weather\">
 					<h2>{$location['name']}</h2>
 					<h1>$current_temp</h1>
@@ -57,11 +62,11 @@ class Pico_Forecast {
 			";
 
 			//Write JS params into script
-			$twig_vars['forecast_script'] .= "skycons.add('{$data['currently']['icon']}-{$location['name']}', '{$data['currently']['icon']}');";
+			$twig_vars['forecast_script'] .= "skycons.add('{$data['currently']['icon']}-{$location['name']}', '{$data['currently']['icon']}');\n";
 		}
 	}	
 
-	public function get_forecast_data($url) {
+	private function get_forecast_data($url) {
 		$ch = curl_init($url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_BINARYTRANSFER, true);
